@@ -1,8 +1,32 @@
 {
   "$schema": "https://json.schemastore.org/nest-cli",
   "collection": "@nestjs/schematics",
-  "sourceRoot": "src",
+  "sourceRoot": "apps/cogmatrix/src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true,
+    "tsConfigPath": "apps/cogmatrix/tsconfig.app.json"
+  },
+  "monorepo": true,
+  "root": "apps/cogmatrix",
+  "projects": {
+    "api": {
+      "type": "application",
+      "root": "apps/api",
+      "entryFile": "main",
+      "sourceRoot": "apps/api/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/api/tsconfig.app.json"
+      }
+    },
+    "cogmatrix": {
+      "type": "application",
+      "root": "apps/cogmatrix",
+      "entryFile": "main",
+      "sourceRoot": "apps/cogmatrix/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/cogmatrix/tsconfig.app.json"
+      }
+    }
   }
 }
