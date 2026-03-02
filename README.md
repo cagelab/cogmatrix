@@ -1,32 +1,78 @@
-# `Turborepo` Vite starter
+# CogMatrix
 
-This is a community-maintained example. If you experience a problem, please submit a pull request with a fix. GitHub Issues will be closed.
+[中文](./README.zh-CN.md)
 
-## Using this example
+GraphQL service for neuroscience experimental data management (Monorepo).
 
-Run the following command:
+CogMatrix is designed to provide a unified way to organize, manage, and query neuroscience experiment datasets (subjects, tasks, sessions, recordings, annotations, and metadata).
 
-```sh
-npx create-turbo@latest -e with-vite-react
+The project is inspired by alyx, implemented with Node.js + TypeScript, and uses GraphQL (instead of a REST-only API) for flexible, researcher-oriented data access.
+
+
+## Project Overview
+
+CogMatrix provides a unified way to organize and query neuroscience experiment data.
+
+## Why GraphQL
+
+- Request only required fields to avoid over/under-fetching
+- Model complex relationships naturally (experiment -> session -> recording -> annotation)
+- Aggregate related sources in a single query
+- Improve exploratory workflows with self-documented schema
+- Evolve schema incrementally without breaking existing workflows
+
+## Performance Philosophy
+
+The system targets research-oriented, interactive data workflows rather than extreme QPS.
+
+- Developer/researcher query experience over peak throughput
+- Low-latency interactive querying for daily exploration
+- Predictable behavior over premature micro-optimizations
+- Clarity and maintainability of data modeling
+
+## Quick Start
+
+### Requirements
+
+- Node.js >= 20
+- pnpm
+
+### Install
+
+```bash
+pnpm install
 ```
 
-## What's inside?
+### Run API (development)
 
-This Turborepo includes the following packages and apps:
+From repository root:
 
-### Apps and Packages
+```bash
+pnpm --filter api start:dev
+```
 
-- `web`: react [vite](https://vitejs.dev) ts app
-- `@repo/ui`: a stub component library shared by `web` application
-- `@repo/eslint-config`: shared `eslint` configurations
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+From `apps/api`:
 
-Each package and app is 100% [TypeScript](https://www.typescriptlang.org/).
+```bash
+pnpm run start:dev
+```
 
-### Utilities
+Default server port is `3000` (or `PORT` if provided).
 
-This Turborepo has some additional tools already setup for you:
+### Common scripts
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+From repository root:
+
+```bash
+pnpm --filter api build
+pnpm --filter api test
+pnpm --filter api test:e2e
+pnpm --filter api lint
+```
+
+## Temporary Bootstrap Notes (To Remove Later)
+
+The following starter notes are intentionally kept for now and can be deleted later when repository cleanup is complete:
+
+- Template origin: Turborepo with Vite React example
+- Existing utility stack: TypeScript, ESLint, Prettier
