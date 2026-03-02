@@ -1,0 +1,33 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Session {
+  id: ID!
+  createdAt: DateTime!
+  startedAt: DateTime!
+  endedAt: DateTime
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  sessions: [Session!]!
+}
+
+type Mutation {
+  createSession(input: CreateSessionDto!): Session!
+  endSession(input: EndSessionDto!): Session!
+}
+
+input CreateSessionDto {
+  startedAt: DateTime!
+}
+
+input EndSessionDto {
+  sessionId: ID!
+  endedAt: DateTime!
+}

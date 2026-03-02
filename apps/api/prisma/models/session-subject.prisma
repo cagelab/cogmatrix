@@ -1,0 +1,13 @@
+model SessionSubject {
+  sessionId String @db.Uuid
+  subjectId String @db.Uuid
+
+  session Session @relation(fields: [sessionId], references: [id], onDelete: Cascade)
+  subject Subject @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now()) @db.Timestamptz
+
+  @@id([sessionId, subjectId])
+  @@index([subjectId])
+  @@index([sessionId])
+}

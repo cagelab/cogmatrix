@@ -1,0 +1,8 @@
+model Session {
+  id        String   @id @default(uuid(7)) @db.Uuid
+  createdAt DateTime @default(now()) @db.Timestamptz
+  startedAt DateTime @db.Timestamptz
+  endedAt   DateTime? @db.Timestamptz
+
+  Subjects SessionSubject[]
+}
