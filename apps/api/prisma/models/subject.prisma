@@ -1,7 +1,0 @@
-model Subject {
-  id        String   @id @default(uuid(7)) @db.Uuid
-  createdAt DateTime @default(now()) @db.Timestamptz
-  nickname  String   @unique
-
-  sessions SessionSubject[]
-}
